@@ -3,21 +3,30 @@
  *
  *  Created on: 02/03/2022
  *      Author: ivan
+ *  Revised on: 23/03/2022
+ *      Author: Edel Diaz (UAH)
  */
 #include "leon3_bprint.h"
+#include "leon3_uart.h" //EDEL: esto es para usar leon3_uart_tx_fifo_is_empty
 
 int8_t leon3_print_string(char* str){
 
 	uint32_t write_timeout=0;
 	int cont = 0;
 	char car = (char) str[cont];
+  int error = 0;
 
 	while(car != '\0'){
-		leon3_putchar(car);
+		error = leon3_putchar(car);
 		cont = cont + 1;
 		car = (char) str[cont];
 	}
-	return (write_timeout == 0xAAAAA);
+  
+  //EDEL: Error: Debes añadir la espera a que la fifo de transmisión se vacie
+	while(!leon3_uart_tx_fifo_is_empty());
+  
+  //EDEL: Error: lo que se devuelve debe ser el error
+	return (error);
 }
 
 int8_t leon3_print_uint8(uint8_t i){

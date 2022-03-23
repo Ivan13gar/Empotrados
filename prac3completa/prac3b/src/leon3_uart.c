@@ -68,7 +68,9 @@ struct UART_regs * const Scaler= (struct UART_regs *)0x8000010C;			 //puntero a 
 char leon3_getchar(){
 
 	uint8_t valor;
-	return valor = pLEON3_UART_REGS->Data;
+  //EDL: MEJOR ponlo en return directamente sin asignar la variable
+	//return valor = pLEON3_UART_REGS->Data;
+  return pLEON3_UART_REGS->Data; 
 }
 
 void leon3_uart_ctrl_rx_enable(){
@@ -83,6 +85,8 @@ void leon3_uart_ctrl_rx_irq_enable(){
 }
 void leon3_uart_ctrl_config_rxtx_loop(uint8_t set_rxtxloop){
 
+    //EDEL:
+    //esto: if(set_rxtxloop == 1) es igual a esto: if(set_rxtxloop)
 		if(set_rxtxloop == 1){
 			pLEON3_UART_REGS->Ctrl |= LEON3_UART_LB;
 		} else{

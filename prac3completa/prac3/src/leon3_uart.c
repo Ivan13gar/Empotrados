@@ -10,7 +10,6 @@
 //UART de LEON3
 struct UART_regs
 {
-
  /** \brief UART Data Register */
  volatile uint32_t Data; /* 0x80000100 */
  /** \brief UART Status Register */

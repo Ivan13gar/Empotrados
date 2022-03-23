@@ -3,6 +3,8 @@
  *
  *  Created on: Feb 28, 2013
  *      Author: user
+ *  Revised on: 23/03/2022
+ *      Author: Edel Diaz (UAH)
  */
 #include "leon3_types.h"
 
@@ -66,9 +68,11 @@ uint8_t leon3_mask_irq (uint8_t irq_level) {
 	if(irq_level >0 && irq_level <16){
 
 		// COMPLETAD Poniendo a 0 SOLO el bit de LEON3_IMASK correspondiente al irq_level 
-		uint32_t bit = (0 << irq_level);
-		*LEON3_IMASK = bit;
-		
+		//uint32_t bit = (0 << irq_level);
+    uint32_t bit = (1 << irq_level);
+    //EDEL: Error: aqui le asignas a todos un 0!:
+		//*LEON3_IMASK = bit;
+			*LEON3_IMASK &= ~bit;	//Sets that bit to 0
 	}else
 		error=1;
 	return error;

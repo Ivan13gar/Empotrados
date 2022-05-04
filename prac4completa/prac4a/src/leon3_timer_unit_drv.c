@@ -119,15 +119,22 @@ uint8_t leon3_timer_config(uint8_t timerId
 	//Timer[0] -> Select Timer 1
 	//Timer[1] -> Select Timer 2
 	if(timerId < LEON3_TIMER_UNIT_TIMERS ){
+    
+    
+    		//TODO:
+		//Valor con el que se reiniciara el contador después de un underflow
+		//Reload Value loaded after each underflow
+		pLEON3_TimerUnit_REGS->Timer[timerId].ReloadValue=timerValue;
 
 		//TODO
 		//Configurar el campo chain_with_prec_timer del timerId (sin cambiar el resto de campos de Ctrl) que fija el encadenamiento  con el timer anterior
 		//Usa las máscaras definidas en LEON3 Timer Ctrl Masks
-		if(chain_with_prec_timer)
-			pLEON3_TimerUnit_REGS->ConfigReg |= LEON3_TIMER_CHAIN_WITH_PREC_TIMER;
-		else
-			pLEON3_TimerUnit_REGS->ConfigReg &= ~LEON3_TIMER_CHAIN_WITH_PREC_TIMER;
-
+		if (chain_with_prec_timer){
+			pLEON3_TimerUnit_REGS->Timer[timerId].Ctrl|=(LEON3_TIMER_CHAIN_WITH_PREC_TIMER);
+		}
+		else{
+			pLEON3_TimerUnit_REGS->Timer[timerId].Ctrl&=(~LEON3_TIMER_CHAIN_WITH_PREC_TIMER);
+		}
 
 		//TODO
 		//Configura el campo Restart del timerId (sin cambiar el resto de campos de Ctrl) que determina si debe reiniciarse el timer tras el underflow

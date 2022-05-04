@@ -52,7 +52,7 @@ uint8_t leon3_unmask_irq (uint8_t irq_level){
 	
 		// COMPLETAD Poniendo a 1 SOLO el bit de LEON3_IMASK correspondiente al irq_level 
 		uint32_t bit = (1 << irq_level);
-		*LEON3_IMASK = bit;
+		*LEON3_IMASK |= bit;
 	}else
 		error=1;
 	return error;

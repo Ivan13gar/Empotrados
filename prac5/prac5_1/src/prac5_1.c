@@ -199,31 +199,43 @@ rtems_task Init(rtems_task_argument argument)
 
 rtems_task TAvoidObstacles (rtems_task_argument unused) {
 	 //TODO completar.
-	rtems_task_wake_after (10);
+	while (1){
+	rtems_status_code status;
 	puts("T1 Do Avoid Obstacles");
 	printf(" - rtems_ticks_since_boot - %i\n\n",
 	 get_ticks_since_boot());
+	status=rtems_task_wake_after(10);
+	}
 }
 rtems_task TPathTracking (rtems_task_argument unused) {
 	//TODO completar.
-	rtems_task_wake_after (15);
+	while (1){
+	rtems_status_code status;
 	puts("T2 Do PathTracking");
 	printf(" - rtems_ticks_since_boot - %i\n\n",
 	 get_ticks_since_boot());
+	status=rtems_task_wake_after(15);
+	}
 }
 rtems_task TSensorFusion (rtems_task_argument unused) {
 	//TODO completar.
-	rtems_task_wake_after (30);
+	while (1){
+	rtems_status_code status;
 	 puts("T3 Do Sensor Fusion\n");
 	printf(" - rtems_ticks_since_boot - %i\n\n",
 	 get_ticks_since_boot());
+	status=rtems_task_wake_after(30)
+	}
 }
 rtems_task TCalculatePath (rtems_task_argument unused) {
 	//TODO completar.
-	rtems_task_wake_after (30);
+	while (1){
+	rtems_status_code status;
 	 puts("T4 Do CalculatePath\n");
 	printf(" - rtems_ticks_since_boot - %i\n\n",
 	 get_ticks_since_boot());
+	status=rtems_task_wake_after(30)
+	}
 }
 
 

@@ -107,7 +107,8 @@ extern rtems_name Task_name[ MAX_TASK_NUMBER ];       /* array of task names */
 static inline uint32_t get_ticks_per_second( void )
 {
   rtems_interval ticks_per_second;
-  //TODO retornar los ticks por segundo
+  rtems_clock_get(RTEMS_CLOCK_GET_TICKS_PER_SECOND,&ticks_per_second);
+  return ticks_per_second;
 
 }
 
@@ -115,7 +116,8 @@ static inline uint32_t get_ticks_since_boot( void )
 {
   rtems_interval ticks_since_boot;
   //TODO retornar los ticks desde el inicio del sistema
-
+  rtems_clock_get(RTEMS_CLOCK_GET_TICKS_SINCE_BOOT,&ticks_since_boot);
+  return ticks_since_boot;
 }
 
 
@@ -153,9 +155,9 @@ rtems_task Init(rtems_task_argument argument)
 
   //TODO fijar el time of day a 22/04/2022 utilizando rtems_clock_set
 
-  time.year   = 0;
-  time.month  = 0;
-  time.day    = 0;
+  time.year   = 2022;
+  time.month  = 4;
+  time.day    = 22;
   time.hour   = 0;
   time.minute = 0;
   time.second = 0;

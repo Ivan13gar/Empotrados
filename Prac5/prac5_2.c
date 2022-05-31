@@ -220,6 +220,7 @@ rtems_task Init(rtems_task_argument argument)
 
 rtems_task TAvoidObstacles (rtems_task_argument unused) {
 	 //TODO completar.
+	//para 100 ms, ticks es 10 si es 1 segundo
 	rtems_interval ticks = get_ticks_since_boot();
  	while(1){ 
 	puts("T1 Do Avoid Obstacles");
